@@ -1,6 +1,6 @@
 from torch import nn
 
-class MNIST_NN(nn.Module):
+class MNIST_NN_Linear(nn.Module):
     
     def __init__(self):
         super().__init__()

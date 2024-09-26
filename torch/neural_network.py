@@ -5,14 +5,17 @@ class MNIST_NN_Linear(nn.Module):
     def __init__(self):
         super().__init__()
         self.layers = nn.Sequential( #linear layers
-            nn.Linear(784,100),
+            nn.Linear(784,360),
             nn.LeakyReLU(),#for evade vanish gradient
+            
+            nn.Linear(360,100),
+            nn.LeakyReLU(),
             
             nn.Linear(100,50),
             nn.LeakyReLU(),
             
             nn.Linear(50,10),
-            nn.Softmax(dim=1)
+            nn.LogSoftmax(dim=1)
         )
         
     def forward(self, X):
@@ -38,11 +41,14 @@ class MNIST_CNN(nn.Module):
             nn.Linear(400, 200),
             nn.LeakyReLU(),
             
-            nn.Linear(200, 50),
+            nn.Linear(200, 100),
+            nn.LeakyReLU(),
+            
+            nn.Linear(100, 50),
             nn.LeakyReLU(),
             
             nn.Linear(50, 10),
-            nn.Softmax(dim=1)
+            nn.LogSoftmax(dim=1)
         )
         
     def forward(self, X):
